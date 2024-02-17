@@ -30,6 +30,7 @@ montage({f, g1, g2, g3});
 ## Task 2: Edge Detection 
 
 Matlab Image Processing Toolbox provides a special function *_edge( )_* which returns an output image containing edge points.  The general format of this function is:
+
 ```
 [g, t] = edge(f, 'method', parameters)
 ```
@@ -39,13 +40,15 @@ Matlab Image Processing Toolbox provides a special function *_edge( )_* which re
 
 <p align="center"> <img src="assets/edge_methods.jpg" /> </p>
 
+The image file 'circuits.tif' is part of a chip micrograph for an intergrated circuit.  The image file 'brain_tumor.jpg' shows a MRI scan of a patient's brain with a tumor.
 
-```
-clear all; close all;
-f = imread('assets/circuit.tif');
-imshow(f)
-[gSobel ts] = edge(f, 'Sobel');
-[glog tl] = edge(f, 'log');
-[gCanny tc] = edge(f, 'Canny');
-montage({f, gSobel, glog, gCanny}, [2 2]);
+Use *_function edge( )_* and the three methods: Sobel, LoG and Canny, to extract edges from these two images.
+
+The function *_edge_* allows the user to specify one or more threshold values with the optional input *_parameter_* to control the sensitivity to edges being detected.  The table below explains the meaning of the threshold parameters that one may use.
+
+<p align="center"> <img src="assets/edge_threshold.jpg" /> </p>
+
+Repeat the edge detection exercise with different threshold to get the best results you can for these two images.
+
+
 ```
