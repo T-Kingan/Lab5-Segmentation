@@ -150,7 +150,7 @@ The start and end coordinates of each line segment is used to define the startin
 > How many line segments are detected? Why it this not 5, the number of peaks found?
 > Explore how you may detect more lines and different lines (e.g. those orthogonal to the ones detected).
 
-Matlab also provides the function **_imfindcircles( )_**, which uses Hough Transform to detect circles instead of lines.  You are left to explore this yourself.  You will find two relevant image files for cicle detection: *_'circles.tif'_* and *_eight.png_* in the *_assets_* folder.
+> Optional: Matlab also provides the function **_imfindcircles( )_**, which uses Hough Transform to detect circles instead of lines.  You are left to explore this yourself.  You will find two relevant image files for cicle detection: *_'circles.tif'_* and *_eight.png_* in the *_assets_* folder.
 
 ## Task 4 - Segmentation by Thresholding
 
