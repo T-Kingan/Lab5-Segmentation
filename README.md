@@ -220,9 +220,66 @@ The Matlab function **_labe2rgb_** turns each element in **_L_** into the segmen
 > Explore different value of k and see the results.
 > Also, try segmenting the colourful image file 'assets/peppers.png'.
 
+## Task 6 - Watershed Segmentation with Distance Transform
+
+Below is an image of a collections of dowels viewed ends-on. The objective is to segment this into regions, with each region containing only one dowel.  Touch dowels should also be separated.
+<p align="center"> <img src="assets/dowels.jpg" /> </p>
+This image is  suitable for watershed algorithm because touch dowels will often be merged into one object. This is not the case with watershed segmentation.
+
+Read the image and produce a cleaned version of binary image having the dowels as foreground and cloth underneath as background.
+
+```
+% Watershed segmentation with Distance Transform
+clear all; close all;
+I = imread('assets/dowels.tif');
+f = im2bw(I, graythresh(I));
+g = bwmorph(f, "close", 1);
+g = bwmorph(g, "open", 1);
+montage({I,g});
+title('Original & binarized cleaned image')
+```
+Instead of applying watershed transform on this binary image directly, a technique often used with watershed is to first calculate the distance transform of this binary image. The distance transform is simply the distance from every pixel to the nearest nonzero-valued (foreground) pixel.  Matlab provides the function **_bwdist( )_** to return an image where the intensity is the distance of each pixel to the nearest foreground (white) pixel.  
+
+```
+% calculate the distance transform image
+gc = imcomplement(g);
+D = bwdist(gc);
+figure(2)
+imshow(D,[min(D(:)) max(D(:))])
+title('Distance Transform')
+```
+> Why do we perform the distance transform on gc and not on c?  
+
+Note that the **_imshow_** function has a second parameter which stretches the distance transform image over the full range of the grayscale.
+
+Now do the watershed transform on the distance image.
+
+```
+% perform watershed on the complement of the distance transform image
+L = watershed(imcomplement(D));
+figure(3)
+imshow(L, [0 max(L(:))])
+title('Watershed Segemented Label')
+```
+> Make sure you understand the image presented. Why is this appears as a grayscale going from dark to light from left the right? 
+
+```
+% Merge everything to show segmentation
+W = (L==0);
+g2 = g | W;
+figure(4)
+montage({I, g, W, g2}, 'size', [2 2]);
+title('Original Image - Binarized Image - Watershed regions - Merged dowels and segmented boundaries')
+```
+> Explain the montage in this last step.
 
 ## Challenges
+
+You are not required to complete all challenges.  Do as many as you can given the time contraints.
 1. The file **_'assets/random_matches.tif'_** is an image of matches in different orientations.  Perform edge detection on this image so that all the matches are identified.  Count the matches.
+   
 2. The file **_'assets/f14.png'_** is an image of the F14 fighter jet.  Produce a binary image where only the fighter jet is shown as white and the rest of the image is black.
+   
 3. The file **_'assets/airport.tif'_** is an aerial photograph of an airport.  Use Hough Transform to extract the main runway and report its length in number of pixel unit.  Remember that because the runway is at an angle, the number of pixels it spans is NOT the dimension.  A line at 45 degree of 100 pixels is LONGER than a horizontal line of the same number of pixels.
+   
 4. Use k-means clustering, perform segmentation on the file **_'assets/peppers.png'_**.
