@@ -217,7 +217,7 @@ montage({f,J})
 
 The Matlab function **_labe2rgb_** turns each element in **_L_** into the segmented colour stored in **_centers_**.
 
-> Explore different value of k and see the results.
+> Explore different value of k and comment on the results.
 > Also, try segmenting the colourful image file 'assets/peppers.png'.
 
 ## Task 6 - Watershed Segmentation with Distance Transform
