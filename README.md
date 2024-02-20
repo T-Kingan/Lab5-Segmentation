@@ -226,7 +226,7 @@ Below is an image of a collections of dowels viewed ends-on. The objective is to
 <p align="center"> <img src="assets/dowels.jpg" /> </p>
 This image is  suitable for watershed algorithm because touch dowels will often be merged into one object. This is not the case with watershed segmentation.
 
-Read the image and produce a cleaned version of binary image having the dowels as foreground and cloth underneath as background.
+Read the image and produce a cleaned version of binary image having the dowels as foreground and cloth underneath as background.  Note how morophological operations are used to reduce the "noise" in grayscale image.  The "noise" is the result of thresholding on the pattern of the wood.
 
 ```
 % Watershed segmentation with Distance Transform
