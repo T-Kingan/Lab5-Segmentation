@@ -248,7 +248,7 @@ figure(2)
 imshow(D,[min(D(:)) max(D(:))])
 title('Distance Transform')
 ```
-> Why do we perform the distance transform on gc and not on c?  
+> Why do we perform the distance transform on gc and not on c?   
 
 Note that the **_imshow_** function has a second parameter which stretches the distance transform image over the full range of the grayscale.
 
